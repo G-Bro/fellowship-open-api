@@ -1,0 +1,50 @@
+openapi: 3.0.2
+info:
+  title: Fellowship API
+  description: >
+    This API definition describes everything relating to Fellowship API.
+  version: 1.5.0
+  contact:
+    name: API Support
+    url: 'http://www.example.com/support'
+    email: georgehbroadhurst@gmail.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+paths:
+  /heroic-cultures:
+    get:
+      summary: Get all heroic cultures
+      operationId: listHeroicCultures
+      tags:
+        - Heroic Culture
+      responses:
+        '200':
+          description: A list of heroic cultures
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./components/schemas/HeroicCulture.yaml
+  /heroic-cultures/{heroicCultureId}:
+    get:
+      summary: Get a specific heroic culture by ID
+      operationId: getHeroicCulture
+      tags:
+        - Heroic Culture
+      parameters:
+        - name: heroicCultureId
+          in: path
+          required: true
+          description: ID of the heroic culture to get
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: A list of all heroic cultures
+          content:
+            application/json:
+              schema:
+                $ref: ./components/schemas/HeroicCulture.yaml

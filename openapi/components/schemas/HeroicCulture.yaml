@@ -1,0 +1,89 @@
+type: object
+properties:
+  id:
+    description: The unique identifier for a culture
+    type: string
+    format: uuid
+  name:
+    description: The name of the culture
+    type: string
+  description:
+    description: A description of the culture
+    type: string
+  blessing:
+    description: The blessing associated with the culture
+    type: object
+    properties:
+      id:
+        description: The unique identifier for the blessing
+        type: string
+        format: uuid
+      name:
+        description: The name of the blessing
+        type: string
+      description:
+        description: A description of the blessing
+        type: string
+  attributeSets:
+    description: A list of attribute sets associated with the culture
+    type: array
+    items:
+      type: object
+      properties:
+        strength:
+          description: The base strength value of the culture
+          type: integer
+        heart:
+          description: The base heart value of the culture
+          type: integer
+        wits:
+          description: The base wits value of the culture
+          type: integer
+  derivedStats:
+    description: A list of derived stats associated with the culture
+    type: array
+    items:
+      type: object
+      properties:
+        endurance:
+          description: The base endurance value of the culture
+          type: integer
+        hope:
+          description: The base hope value of the culture
+          type: integer
+        parry:
+          description: The base parry value of the culture
+          type: integer
+  startingSkills:
+    description: A list of skills associated with the culture
+    type: array
+    items:
+      type: object
+      properties:
+        skill:
+          $ref: './Skill.yaml'
+        value:
+          description: The starting value of the skill
+          type: integer
+        favor:
+          description: Indicates if the skill is favoured
+          type: boolean
+  combatProficiencies:
+    description: A list of combat proficiencies associated with the culture
+    type: array
+    items:
+      type: object
+      properties:
+        weaponGroup:
+          $ref: './WeaponGroups.yaml'
+        value:
+          description: The starting value of the proficiency
+          type: integer
+  distinctiveFeatures:
+    description: A list of distinctive features associated with the culture
+    type: array
+    items:
+      $ref: './DistinctiveFeatures.yaml'
+  standardOfLiving:
+    description: The typical standard of living associated with the culture
+    $ref: './StandardOfLiving.yaml'

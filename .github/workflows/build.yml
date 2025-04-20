@@ -1,0 +1,33 @@
+name: Generate Code from OpenAPI
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  generate_code:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Generate code
+        uses: openapi-generators/openapitools-generator-action@v1
+        with:
+          generator: typescript-axios
+          generator-tag: latest-release
+          openapi-file: ./openapi/openapi.yaml
+          command-args: |
+            --git-host=github.com \
+            --git-repo-id=fellowship-open-api \
+            --git-user-id=G-Bro \
+            --output=clients/api-typescript-axios \
+            --additional-properties=npmName=@fellowshippy/api
+      - name: Commit
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "chore: generated clients"
+          git push
+

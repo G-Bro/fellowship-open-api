@@ -1,0 +1,16 @@
+type: object
+properties:
+  id:
+    description: The unique identifier for a standard of living
+    type: string
+    format: uuid
+  name:
+    description: The name of the standard of living
+    type: string
+  description:
+    description: A description of the standard of living
+    type: string
+  value:
+    description: The starting numerical treasure value of the standard of living
+    type: number
+    format: float
